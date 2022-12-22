@@ -2,11 +2,13 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class EnterButton extends JButton {
+public class button extends JButton {
   public boolean mouseDown;
   public Polygon shape;
+  int buttonID;
 
-  static void wait(int milliseconds) {
+  static void wait(float seconds) {
+    int milliseconds = (int) seconds*100;
     try {
       Thread.sleep(milliseconds);
     } catch (Exception e) {
@@ -15,22 +17,20 @@ public class EnterButton extends JButton {
   
   ArrayList<Point> initPoints = new ArrayList<Point>(5);
 
-  public EnterButton(int buttonID) {
+  public button(int buttonIDin) {
+    buttonID = buttonIDin;
     this.shape = new Polygon();
     this.addMouseListener(new MouseButtonRecogn());
-    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-    System.out.println(size);
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     // Get the screen size in type Dimension
     // Must convert to ints to center the buttons on the screen
-    String dimToInt = String.valueOf(size);
-    System.out.println(dimToInt);
+    String dimToInt = String.valueOf(screenSize);
     // For some reason Dimensions start with java.awt.Dimension, so this is removed
     dimToInt = dimToInt.substring(25, dimToInt.length() - 1);
     // It also says width= and height=. This removes that
     dimToInt = dimToInt.replaceFirst("height=", "");
     // Here all that is left is width,height. Remove the comma and put in String[]
     String[] parser = dimToInt.split(",");
-    System.out.println(parser);
     // Since you cannot parseInt a list, we must do it one element at a time
     int width = Integer.parseInt(parser[0]);
     int height = Integer.parseInt(parser[1]);
@@ -38,33 +38,51 @@ public class EnterButton extends JButton {
     System.out.print(", ");
     System.out.println(height);
     
-    // initialisiere Form
-    initPoints.removeAll(initPoints);
-    // initPoints.add(new Point(200, 200));
-    // initPoints.add(new Point(200, 260));
-    // initPoints.add(new Point(260, 260));
-    // initPoints.add(new Point(260, 320));
-    // initPoints.add(new Point(320, 320));
-    // initPoints.add(new Point(320, 200));
-    // this.initialize(initPoints);
-
-    // initPoints.removeAll(initPoints);
-    // initPoints.add(new Point(130, 200));
-    // initPoints.add(new Point(130, 260));
-    // initPoints.add(new Point(70, 260));
-    // initPoints.add(new Point(70, 320));
-    // initPoints.add(new Point(-50, 320));
-    // initPoints.add(new Point(-50, 200));
-    // this.initialize(initPoints);
-    initPoints.add(new Point(200, 200));
-    initPoints.add(new Point(320, 200));
-    initPoints.add(new Point(320, 320));
-    initPoints.add(new Point(200, 320));
-    initPoints.add(new Point(200, 260));
-    initPoints.add(new Point(260, 260));
-    initPoints.add(new Point(260, 320));
-    initPoints.add(new Point(200, 320));
-    this.initialize(initPoints);
+    if (buttonID == 1) {
+      initPoints.removeAll(initPoints);
+      initPoints.add(new Point(300, 150));
+      initPoints.add(new Point(180, 150));
+      initPoints.add(new Point(180, 270));
+      initPoints.add(new Point(300, 270));
+      initPoints.add(new Point(300, 210));
+      initPoints.add(new Point(240, 210));
+      initPoints.add(new Point(240, 270));
+      initPoints.add(new Point(300, 270));
+      this.initialize(initPoints);
+    } else if (buttonID == 2) {
+      initPoints.removeAll(initPoints);
+      initPoints.add(new Point(350, 150));
+      initPoints.add(new Point(470, 150));
+      initPoints.add(new Point(470, 270));
+      initPoints.add(new Point(350, 270));
+      initPoints.add(new Point(350, 210));
+      initPoints.add(new Point(410, 210));
+      initPoints.add(new Point(410, 270));
+      initPoints.add(new Point(350, 270));
+      this.initialize(initPoints);
+    } else if (buttonID == 3) {
+      initPoints.removeAll(initPoints);
+      initPoints.add(new Point(180, 220));
+      initPoints.add(new Point(180, 340));
+      initPoints.add(new Point(300, 340));
+      initPoints.add(new Point(300, 220));
+      initPoints.add(new Point(240, 220));
+      initPoints.add(new Point(240, 280));
+      initPoints.add(new Point(300, 280));
+      initPoints.add(new Point(300, 220));
+      this.initialize(initPoints);
+    } else if (buttonID == 4) {
+      initPoints.removeAll(initPoints);
+      initPoints.add(new Point(620, 220));
+      initPoints.add(new Point(620, 340));
+      initPoints.add(new Point(500, 340));
+      initPoints.add(new Point(500, 220));
+      initPoints.add(new Point(560, 220));
+      initPoints.add(new Point(560, 280));
+      initPoints.add(new Point(500, 280));
+      initPoints.add(new Point(500, 220));
+      this.initialize(initPoints);
+    }
   }
 
   protected void initialize(ArrayList<Point> points) {
@@ -96,9 +114,6 @@ public class EnterButton extends JButton {
         (int) Math.round(p7.getY()));
     this.shape.addPoint((int) Math.round(p8.getX()),
         (int) Math.round(p8.getY()));
-    // this.setMinimumSize(this.getSize());
-    // this.setMaximumSize(this.getSize());
-    // this.setPreferredSize(this.getSize());
   }
 
   public boolean contains(int x, int y) {
@@ -111,7 +126,15 @@ public class EnterButton extends JButton {
 
   protected void paintComponent(Graphics g) {
     Graphics2D gCopy = (Graphics2D) g.create();
-    gCopy.setColor(Color.red);
+    if (buttonID == 1) {
+      gCopy.setColor(Color.green);
+    } else if (buttonID == 2) {
+      gCopy.setColor(Color.red);
+    } else if (buttonID == 3) {
+      gCopy.setColor(Color.yellow);
+    } else if (buttonID == 4) {
+      gCopy.setColor(Color.blue);
+    }
     gCopy.fillPolygon(this.shape);
   }
 }

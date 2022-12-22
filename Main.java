@@ -18,15 +18,17 @@ class Main {
 
   public static void main(String[] args) {
 
-    JFrame frame = new JFrame("Simons");
-    EnterButton button = new EnterButton(1);
+    JFrame frame = new JFrame();
+    frame.setLayout(new GridLayout(2, 2));
+    frame.add(new button(1));
+    frame.add(new button(2));
+    frame.add(new button(3));
+    frame.add(new button(4));
+    frame.pack();
 
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-
-    System.out.println(size);
-
-    frame.add(button);
     frame.setSize(size);
+    
     frame.setVisible(true);
   }
 }
