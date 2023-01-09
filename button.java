@@ -19,6 +19,7 @@ public class button extends JButton {
 
   public button(int buttonIDin) {
     buttonID = buttonIDin;
+    this.setBackground(new Color(0,0,0));
     this.shape = new Polygon();
     this.addMouseListener(new MouseButtonRecogn());
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -73,14 +74,14 @@ public class button extends JButton {
       this.initialize(initPoints);
     } else if (buttonID == 4) {
       initPoints.removeAll(initPoints);
-      initPoints.add(new Point(620, 220));
-      initPoints.add(new Point(620, 340));
-      initPoints.add(new Point(500, 340));
-      initPoints.add(new Point(500, 220));
       initPoints.add(new Point(560, 220));
-      initPoints.add(new Point(560, 280));
-      initPoints.add(new Point(500, 280));
+      initPoints.add(new Point(560, 340));
+      initPoints.add(new Point(440, 340));
+      initPoints.add(new Point(440, 220));
       initPoints.add(new Point(500, 220));
+      initPoints.add(new Point(500, 280));
+      initPoints.add(new Point(440, 280));
+      initPoints.add(new Point(440, 220));
       this.initialize(initPoints);
     }
   }
@@ -88,15 +89,17 @@ public class button extends JButton {
   protected void initialize(ArrayList<Point> points) {
 
     Point p1, p2, p3, p4, p5, p6, p7, p8;
+    System.out.println(buttonID);
+    System.out.println(points);
 
-    p1 = new Point(points.get(0));
-    p2 = new Point(points.get(1));
-    p3 = new Point(points.get(2));
-    p4 = new Point(points.get(3));
-    p5 = new Point(points.get(4));
-    p6 = new Point(points.get(5));
-    p7 = new Point(points.get(6));
-    p8 = new Point(points.get(7));
+    p1 = points.get(0);
+    p2 = points.get(1);
+    p3 = points.get(2);
+    p4 = points.get(3);
+    p5 = points.get(4);
+    p6 = points.get(5);
+    p7 = points.get(6);
+    p8 = points.get(7);
 
     this.shape.addPoint((int) Math.round(p1.getX()),
         (int) Math.round(p1.getY()));
@@ -114,22 +117,15 @@ public class button extends JButton {
         (int) Math.round(p7.getY()));
     this.shape.addPoint((int) Math.round(p8.getX()),
         (int) Math.round(p8.getY()));
-  }
-
-  public boolean contains(int x, int y) {
-    if (this.shape.contains(x, y)) {
-      return true;
-    } else {
-      return false;
-    }
+    this.setVisible(true);
   }
 
   protected void paintComponent(Graphics g) {
     Graphics2D gCopy = (Graphics2D) g.create();
     if (buttonID == 1) {
-      gCopy.setColor(Color.green);
+      gCopy.setColor(new Color(0,200,0));
     } else if (buttonID == 2) {
-      gCopy.setColor(Color.red);
+      gCopy.setColor(new Color(200,0,0));
     } else if (buttonID == 3) {
       gCopy.setColor(Color.yellow);
     } else if (buttonID == 4) {
