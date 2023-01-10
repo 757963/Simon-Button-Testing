@@ -6,6 +6,7 @@ public class button extends JButton {
   public boolean mouseDown;
   public Polygon shape;
   int buttonID;
+  Graphics2D gCopy;
 
   static void wait(float seconds) {
     int milliseconds = (int) seconds*100;
@@ -121,16 +122,33 @@ public class button extends JButton {
   }
 
   protected void paintComponent(Graphics g) {
-    Graphics2D gCopy = (Graphics2D) g.create();
+    gCopy = (Graphics2D) g.create();
     if (buttonID == 1) {
       gCopy.setColor(new Color(0,200,0));
     } else if (buttonID == 2) {
       gCopy.setColor(new Color(200,0,0));
     } else if (buttonID == 3) {
-      gCopy.setColor(Color.yellow);
+      gCopy.setColor(new Color(200,200,0));
     } else if (buttonID == 4) {
-      gCopy.setColor(Color.blue);
+      gCopy.setColor(new Color(0,0,200));
     }
     gCopy.fillPolygon(this.shape);
+  }
+
+  public void clickColor(String callConfirm) {
+    if (callConfirm=="click") {
+    gCopy.setColor(new Color(100,100,100));
+    wait(0.1f);
+      //fill
+    }
+  }
+
+  public boolean contains(int x, int y) {
+    if (this.shape.contains(x,y)) {
+      clickColor("click");
+      return (true);
+    } else {
+      return(false);
+    }
   }
 }

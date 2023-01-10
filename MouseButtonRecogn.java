@@ -1,7 +1,6 @@
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 class MouseButtonRecogn extends MouseAdapter {
 
@@ -27,13 +26,7 @@ class MouseButtonRecogn extends MouseAdapter {
       System.out.print(x);
       System.out.print(", ");
       System.out.println(y);
-    }
-
-    if ((event.getModifiers() & InputEvent.BUTTON3_MASK) != 0) {
-      System.out.println("Right click detected" + (event.getPoint()));
-    }
-    if ((event.getModifiers() & InputEvent.BUTTON2_MASK) != 0) {
-      System.out.println("Middle click detected" + (event.getPoint()));
+      Main.click();
     }
   }
 }
