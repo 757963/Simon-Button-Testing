@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 class Main {
+  JFrame frame = new JFrame();
 
   public boolean mouseDown;
 
@@ -15,8 +16,7 @@ class Main {
     } catch (Exception e) {
     }
   }
-  static void createButtons() {
-    JFrame frame = new JFrame();
+  public void createButtons() {
     Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     frame.setSize(size);
     for (int i=1; i<=4; i=i+1) {
@@ -24,11 +24,18 @@ class Main {
       frame.setVisible(true);
     }
   }
+  
+
   static void click() {
     System.out.println("Now Main knows!");
   }
 
   public static void main(String[] args) {
-    createButtons();
+    Main translator = new Main();
+    translator.createButtons();
+    wait(1000);
+    translator.frame.getRootPane().setBackground(new Color(200,0,0));
+    translator.frame.setVisible(true);
+    System.out.println("Done.");
   }
 }
