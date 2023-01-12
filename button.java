@@ -64,25 +64,25 @@ public class button extends JButton {
       this.initialize(initPoints);
     } else if (buttonID == 3) {
       initPoints.removeAll(initPoints);
-      initPoints.add(new Point(180, 220));
-      initPoints.add(new Point(180, 340));
-      initPoints.add(new Point(300, 340));
-      initPoints.add(new Point(300, 220));
-      initPoints.add(new Point(240, 220));
-      initPoints.add(new Point(240, 280));
-      initPoints.add(new Point(300, 280));
-      initPoints.add(new Point(300, 220));
+      initPoints.add(new Point(180, 320));
+      initPoints.add(new Point(180, 440));
+      initPoints.add(new Point(300, 440));
+      initPoints.add(new Point(300, 320));
+      initPoints.add(new Point(240, 320));
+      initPoints.add(new Point(240, 380));
+      initPoints.add(new Point(300, 380));
+      initPoints.add(new Point(300, 320));
       this.initialize(initPoints);
     } else if (buttonID == 4) {
       initPoints.removeAll(initPoints);
-      initPoints.add(new Point(560, 220));
-      initPoints.add(new Point(560, 340));
-      initPoints.add(new Point(440, 340));
-      initPoints.add(new Point(440, 220));
-      initPoints.add(new Point(500, 220));
-      initPoints.add(new Point(500, 280));
-      initPoints.add(new Point(440, 280));
-      initPoints.add(new Point(440, 220));
+      initPoints.add(new Point(470, 320));
+      initPoints.add(new Point(470, 440));
+      initPoints.add(new Point(350, 440));
+      initPoints.add(new Point(350, 320));
+      initPoints.add(new Point(410, 320));
+      initPoints.add(new Point(410, 380));
+      initPoints.add(new Point(350, 380));
+      initPoints.add(new Point(350, 320));
       this.initialize(initPoints);
     }
   }
