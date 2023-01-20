@@ -8,11 +8,11 @@ public class button extends JButton {
   int buttonID;
   Graphics2D gCopy;
 
-  static void wait(float seconds) {
-    int milliseconds = (int) seconds*100;
+  static void wait(int milliseconds, String confirm) {
     try {
       Thread.sleep(milliseconds);
     } catch (Exception e) {
+      ;
     }
   }
   
@@ -22,7 +22,10 @@ public class button extends JButton {
     buttonID = buttonIDin;
     this.setBackground(new Color(0,0,0));
     this.shape = new Polygon();
-    this.addMouseListener(new MouseButtonRecogn());
+    this.addMouseListener(new MouseButtonRecogn(buttonID));
+
+    //The following could be use to customize buttons and make them fit all screen sizes.
+    /*
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     // Get the screen size in type Dimension
     // Must convert to ints to center the buttons on the screen
@@ -36,62 +39,63 @@ public class button extends JButton {
     // Since you cannot parseInt a list, we must do it one element at a time
     int width = Integer.parseInt(parser[0]);
     int height = Integer.parseInt(parser[1]);
-    System.out.print(width);
-    System.out.print(", ");
-    System.out.println(height);
-    
-    if (buttonID == 1) {
-      initPoints.removeAll(initPoints);
-      initPoints.add(new Point(300, 150));
-      initPoints.add(new Point(180, 150));
-      initPoints.add(new Point(180, 270));
-      initPoints.add(new Point(300, 270));
-      initPoints.add(new Point(300, 210));
-      initPoints.add(new Point(240, 210));
-      initPoints.add(new Point(240, 270));
-      initPoints.add(new Point(300, 270));
-      this.initialize(initPoints);
-    } else if (buttonID == 2) {
-      initPoints.removeAll(initPoints);
-      initPoints.add(new Point(350, 150));
-      initPoints.add(new Point(470, 150));
-      initPoints.add(new Point(470, 270));
-      initPoints.add(new Point(350, 270));
-      initPoints.add(new Point(350, 210));
-      initPoints.add(new Point(410, 210));
-      initPoints.add(new Point(410, 270));
-      initPoints.add(new Point(350, 270));
-      this.initialize(initPoints);
-    } else if (buttonID == 3) {
-      initPoints.removeAll(initPoints);
-      initPoints.add(new Point(180, 320));
-      initPoints.add(new Point(180, 440));
-      initPoints.add(new Point(300, 440));
-      initPoints.add(new Point(300, 320));
-      initPoints.add(new Point(240, 320));
-      initPoints.add(new Point(240, 380));
-      initPoints.add(new Point(300, 380));
-      initPoints.add(new Point(300, 320));
-      this.initialize(initPoints);
-    } else if (buttonID == 4) {
-      initPoints.removeAll(initPoints);
-      initPoints.add(new Point(470, 320));
-      initPoints.add(new Point(470, 440));
-      initPoints.add(new Point(350, 440));
-      initPoints.add(new Point(350, 320));
-      initPoints.add(new Point(410, 320));
-      initPoints.add(new Point(410, 380));
-      initPoints.add(new Point(350, 380));
-      initPoints.add(new Point(350, 320));
-      this.initialize(initPoints);
+    // System.out.print(width);
+    // System.out.print(", ");
+    // System.out.println(height);
+    */
+    switch(buttonID) {
+      case(1):  initPoints.removeAll(initPoints);
+                initPoints.add(new Point(300, 150));
+                initPoints.add(new Point(180, 150));
+                initPoints.add(new Point(180, 270));
+                initPoints.add(new Point(300, 270));
+                initPoints.add(new Point(300, 210));
+                initPoints.add(new Point(240, 210));
+                initPoints.add(new Point(240, 270));
+                initPoints.add(new Point(300, 270));
+                this.initialize(initPoints);
+                break;
+      case(2):  initPoints.removeAll(initPoints);
+                initPoints.add(new Point(350, 150));
+                initPoints.add(new Point(470, 150));
+                initPoints.add(new Point(470, 270));
+                initPoints.add(new Point(350, 270));
+                initPoints.add(new Point(350, 210));
+                initPoints.add(new Point(410, 210));
+                initPoints.add(new Point(410, 270));
+                initPoints.add(new Point(350, 270));
+                this.initialize(initPoints);
+                break;
+      case(3):  initPoints.removeAll(initPoints);
+                initPoints.add(new Point(180, 320));
+                initPoints.add(new Point(180, 440));
+                initPoints.add(new Point(300, 440));
+                initPoints.add(new Point(300, 320));
+                initPoints.add(new Point(240, 320));
+                initPoints.add(new Point(240, 380));
+                initPoints.add(new Point(300, 380));
+                initPoints.add(new Point(300, 320));
+                this.initialize(initPoints);
+                break;
+      case(4):  initPoints.removeAll(initPoints);
+                initPoints.add(new Point(470, 320));
+                initPoints.add(new Point(470, 440));
+                initPoints.add(new Point(350, 440));
+                initPoints.add(new Point(350, 320));
+                initPoints.add(new Point(410, 320));
+                initPoints.add(new Point(410, 380));
+                initPoints.add(new Point(350, 380));
+                initPoints.add(new Point(350, 320));
+                this.initialize(initPoints);
+                break;
     }
   }
 
   protected void initialize(ArrayList<Point> points) {
 
     Point p1, p2, p3, p4, p5, p6, p7, p8;
-    System.out.println(buttonID);
-    System.out.println(points);
+    // System.out.println(buttonID);
+    // System.out.println(points);
 
     p1 = points.get(0);
     p2 = points.get(1);
@@ -135,17 +139,8 @@ public class button extends JButton {
     gCopy.fillPolygon(this.shape);
   }
 
-  public void clickColor(String callConfirm) {
-    if (callConfirm=="click") {
-    gCopy.setColor(new Color(100,100,100));
-    wait(0.1f);
-      //fill
-    }
-  }
-
   public boolean contains(int x, int y) {
     if (this.shape.contains(x,y)) {
-      clickColor("click");
       return (true);
     } else {
       return(false);
